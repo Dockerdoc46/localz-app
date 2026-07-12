@@ -54,9 +54,11 @@ src/
 - [x] Flow Wallet/Settings/Profile (7 schermate): profilo guest/host con switch Guest↔Localz,
       wallet, notifiche, impostazioni, help & safety, recensione post-cena
 
-Tutte le schermate principali del file Figma sono ora implementate e navigabili. La schermata
-"Bookings" (tab calendario) resta un placeholder minimale — nel file Figma esportato non era
-presente una vista dedicata alle prenotazioni.
+- [x] Schermata Bookings (lista prenotazioni Upcoming/Past, senza riferimento Figma dedicato
+      ma coerente con lo stile del resto dell'app)
+
+Tutte le 30 schermate del file Figma sono ora implementate e navigabili, incluse le foto reali
+esportate da Figma al posto dei placeholder colorati.
 
 ### Nota sulla navigazione
 
