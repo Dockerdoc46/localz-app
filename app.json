@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Localz",
+    "slug": "localz",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#FBF4EC"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.localz.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FBF4EC"
+      },
+      "package": "com.localz.app"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
