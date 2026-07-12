@@ -27,12 +27,13 @@ Poi scansiona il QR code con l'app **Expo Go** (iOS/Android) oppure premi `i` pe
 ```
 src/
   theme/        colori, tipografia, spacing, radius (tokens da Figma)
-  components/   Button, ScreenContainer, PhotoPlaceholder, Dots, ecc.
-  navigation/   Onboarding stack + 4 stack nei tab principali (Home, Chat, Host, Profile)
+  components/   Button, ScreenContainer, PhotoPlaceholder, Chip, TableCard, ecc.
+  data/         mock data (tavole di esempio)
+  navigation/   Onboarding stack + 5 tab principali (Explore, Map, Bookings, Messages, Profile)
   screens/
     onboarding/ 6 schermate COMPLETE e fedeli al design (splash, 3 intro, login, verifica identità, città)
-    discovery/  schermate scoperta tavole/mappa — placeholder, da implementare
-    booking/    flusso prenotazione — placeholder, da implementare
+    discovery/  feed, filtri, mappa, dettaglio tavola — COMPLETE e fedeli al design
+    booking/    scelta posti, riepilogo costi, conferma — COMPLETE e fedeli al design
     chat/       messaggi — placeholder, da implementare
     host/       dashboard host, crea tavola — placeholder, da implementare
     settings/   profilo, wallet, notifiche, impostazioni — placeholder, da implementare
@@ -46,9 +47,21 @@ sono ancora fedeli al design Figma — verranno implementate una sezione alla vo
 - [x] Design tokens (colori, font, radius) da Figma
 - [x] Scaffold progetto + navigazione completa (27 schermate mappate)
 - [x] Flow Onboarding/Login (6 schermate, pixel-fedeli)
-- [ ] Flow Discovery/Booking (8 schermate)
+- [x] Flow Discovery/Map/Booking (8 schermate, pixel-fedeli): feed con filtri, mappa con
+      bottom sheet, dettaglio tavola, scelta posti, riepilogo costi, conferma
 - [ ] Flow Chat + Host (7 schermate)
 - [ ] Flow Wallet/Settings/Profile (6 schermate)
+
+### Nota sulla navigazione
+
+Il bottom-nav a 5 tab (Explore, Map, Bookings, Messages, Profile) segue esattamente quello
+mostrato nelle schermate Figma di discovery/mappa. Il flusso "Host" (dashboard, crea tavola,
+ricompense) non è un tab ma verrà agganciato come flusso separato raggiungibile dal profilo
+("Switch to Hosting"), coerente con come Figma lo presenta come sezione a parte ("User as a
+host").
+
+Dati delle tavole (Sofia, Lukas, Clara) sono mock in `src/data/tables.ts` — da sostituire con
+chiamate API reali quando ci sarà un backend.
 
 ## Esportare le immagini da Figma
 
@@ -70,8 +83,8 @@ Per aggiungere le foto vere:
 
 ## Prossimi passi
 
-- Implementare le restanti 21 schermate (Discovery, Booking, Chat, Host, Wallet, Settings) seguendo
-  lo stesso pattern usato per l'onboarding (vedi `src/screens/onboarding/*`).
+- Implementare le restanti 13 schermate (Chat, Host, Wallet, Settings) seguendo lo stesso
+  pattern usato per onboarding/discovery/booking.
 - Collegare un backend (auth, prenotazioni, chat, pagamenti in-app come da modello di
   cost-sharing descritto nel progetto).
 - Configurare EAS Build per la pubblicazione su App Store.
