@@ -1,7 +1,5 @@
 import React from "react";
-import { PlaceholderScreen } from "@/components/PlaceholderScreen";
-
-// Figma node 3:765 — "table-detail"
-export function TableDetailScreen() {
-  return <PlaceholderScreen title="Dettaglio Tavola" />;
-}
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import type 

@@ -11,26 +11,13 @@ export type OnboardingStackParamList = {
   CityLanguageSelection: undefined;
 };
 
-// ---- Home / Discovery / Booking stack ----
-export type HomeStackParamList = {
-  HomeDiscoveryFeed: undefined;
-  HomeFiltersExpanded: undefined;
-  MapView: undefined;
-  MapBottomSheet: undefined;
-  TableDetail: { tableId: string };
-  BookingSeats: { tableId: string };
-  BookingSummary: { tableId: string; seats: number };
-  BookingConfirmation: { bookingId: string };
-  PostDinnerReview: { bookingId: string };
-};
-
 // ---- Chat stack ----
 export type ChatStackParamList = {
   ChatList: undefined;
   ChatThread: { threadId: string; hostName: string };
 };
 
-// ---- Host stack — matches Figma section "User as a host" ----
+// ---- Host stack — matches Figma section "User as a host" (wired in a later iteration) ----
 export type HostStackParamList = {
   HostDashboard: undefined;
   CreateTableStep1: undefined;
@@ -48,23 +35,29 @@ export type ProfileStackParamList = {
   HelpSafety: undefined;
 };
 
-// ---- Bottom tabs ----
+// ---- Bottom tabs — matches the 5-tab bottom-nav shown across Figma discovery/map/booking screens ----
 export type MainTabParamList = {
-  HomeTab: NavigatorScreenParams<HomeStackParamList>;
-  ChatTab: NavigatorScreenParams<ChatStackParamList>;
-  HostTab: NavigatorScreenParams<HostStackParamList>;
+  ExploreTab: undefined;
+  MapTab: undefined;
+  BookingsTab: undefined;
+  MessagesTab: NavigatorScreenParams<ChatStackParamList>;
   ProfileTab: NavigatorScreenParams<ProfileStackParamList>;
 };
 
 // ---- Root ----
+// TableDetail / booking flow / filters live at the root level (presented as
+// push/modal screens) so they're reachable from both the Explore feed and
+// the Map pins without duplicating routes per tab.
 export type RootStackParamList = {
   Onboarding: NavigatorScreenParams<OnboardingStackParamList>;
   Main: NavigatorScreenParams<MainTabParamList>;
+  HomeFiltersExpanded: undefined;
+  TableDetail: { tableId: string };
+  BookingSeats: { tableId: string };
+  BookingSummary: { tableId: string; seats: number };
+  BookingConfirmation: { tableId: string };
+  PostDinnerReview: { tableId: string };
 };
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
-}
+  // eslint-disable-next-line @typescript-esl
