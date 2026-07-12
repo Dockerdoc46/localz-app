@@ -14,6 +14,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import type { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { ChatStackParamList } from "@/navigation/types";
 import { ScreenContainer } from "@/components/ScreenContainer";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { getConversationByHost, type Message } from "@/data/conversations";
 import { colors, radius, spacing, typography } from "@/theme";
 
@@ -43,7 +44,7 @@ export function ChatThreadScreen({ route }: Props) {
         <Pressable onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color={colors.textPrimary} />
         </Pressable>
-        <View style={styles.headerAvatar} />
+        <PhotoPlaceholder source={conversation.hostAvatar} icon="person-outline" style={styles.headerAvatar} />
         <View>
           <Text style={typography.h2}>{conversation.hostName}</Text>
           <Text style={[typography.caption, { fontFamily: typography.buttonLabel.fontFamily }]}>
@@ -53,7 +54,7 @@ export function ChatThreadScreen({ route }: Props) {
       </View>
 
       <View style={styles.tableCard}>
-        <View style={styles.tableThumb} />
+        <PhotoPlaceholder source={conversation.tableImage} icon="restaurant-outline" style={styles.tableThumb} />
         <View>
           <Text style={typography.bodyStrong}>{conversation.tableTitle}</Text>
           <Text style={typography.caption}>{conversation.tableTime}</Text>

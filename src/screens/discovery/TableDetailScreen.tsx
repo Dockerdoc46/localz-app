@@ -22,7 +22,7 @@ export function TableDetailScreen({ route }: Props) {
     <View style={styles.root}>
       <ScrollView contentContainerStyle={styles.body}>
         <View style={styles.heroWrap}>
-          <PhotoPlaceholder icon="restaurant-outline" style={styles.hero} />
+          <PhotoPlaceholder source={table.image} icon="restaurant-outline" style={styles.hero} />
           <Pressable style={styles.closeButton} onPress={() => navigation.goBack()}>
             <Ionicons name="close" size={22} color={colors.textPrimary} />
           </Pressable>

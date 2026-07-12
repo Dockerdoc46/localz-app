@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import { ScreenContainer } from "./ScreenContainer";
 import { Button } from "./Button";
 import { PhotoPlaceholder } from "./PhotoPlaceholder";
@@ -11,17 +11,18 @@ type Props = {
   title: string;
   description: string;
   icon: keyof typeof Ionicons.glyphMap;
+  image?: ImageSourcePropType;
   step: number; // 0,1,2
   ctaLabel: string;
   onPressCta: () => void;
 };
 
 /** Shared layout for intro-slide-1 / 2 / 3 (Figma nodes 3:30, 3:51, 3:72). */
-export function IntroSlideTemplate({ title, description, icon, step, ctaLabel, onPressCta }: Props) {
+export function IntroSlideTemplate({ title, description, icon, image, step, ctaLabel, onPressCta }: Props) {
   return (
     <ScreenContainer style={styles.container}>
       <View style={styles.imageBlock}>
-        <PhotoPlaceholder icon={icon} style={styles.image} />
+        <PhotoPlaceholder source={image} icon={icon} style={styles.image} />
         <View style={styles.textBlock}>
           <Text style={typography.h1}>{title}</Text>
           <Text style={typography.body}>{description}</Text>

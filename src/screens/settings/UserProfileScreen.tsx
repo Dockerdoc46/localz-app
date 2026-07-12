@@ -5,6 +5,7 @@ import { ProfileModeToggle } from "@/components/ProfileModeToggle";
 import { ProfileQuickLinks } from "@/components/ProfileQuickLinks";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { useHostMode } from "@/context/HostModeContext";
+import { TABLES } from "@/data/tables";
 import { colors, radius, spacing, typography } from "@/theme";
 
 // Figma node 59:2 — "user-profile" (Guest mode)
@@ -50,7 +51,7 @@ export function UserProfileScreen() {
           <View style={styles.row}>
             {TABLES_ATTENDED.map((table, i) => (
               <View key={i} style={styles.attendedCard}>
-                <PhotoPlaceholder icon="restaurant-outline" style={styles.attendedImage} />
+                <PhotoPlaceholder source={TABLES[i % TABLES.length].image} icon="restaurant-outline" style={styles.attendedImage} />
                 <Text style={typography.bodyStrong}>{table.title}</Text>
                 <Text style={typography.label}>★ {table.rating}</Text>
               </View>
@@ -67,9 +68,9 @@ export function UserProfileScreen() {
           </View>
           <Text style={typography.caption}>Photos guests chose to feature after their dinner</Text>
           <View style={styles.row}>
-            <PhotoPlaceholder icon="image-outline" style={styles.portfolioImage} />
-            <PhotoPlaceholder icon="image-outline" style={styles.portfolioImage} />
-            <PhotoPlaceholder icon="image-outline" style={styles.portfolioImage} />
+            <PhotoPlaceholder source={TABLES[0].image} icon="image-outline" style={styles.portfolioImage} />
+            <PhotoPlaceholder source={TABLES[1].image} icon="image-outline" style={styles.portfolioImage} />
+            <PhotoPlaceholder source={TABLES[2].image} icon="image-outline" style={styles.portfolioImage} />
           </View>
         </View>
       </ScrollView>

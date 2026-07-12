@@ -5,6 +5,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import type { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "@/navigation/types";
 import { Button } from "@/components/Button";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { getTableById } from "@/data/tables";
 import { colors, radius, spacing, typography } from "@/theme";
 
@@ -32,7 +33,7 @@ export function BookingSeatsScreen({ route }: Props) {
 
       <View style={styles.body}>
         <View style={styles.tableCard}>
-          <View style={styles.tableThumb} />
+          <PhotoPlaceholder source={table.image} icon="restaurant-outline" style={styles.tableThumb} />
           <View>
             <Text style={typography.bodyStrong}>{table.title}</Text>
             <Text style={typography.caption}>

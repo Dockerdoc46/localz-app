@@ -15,12 +15,12 @@ export function TableCard({ table, onPress }: Props) {
   return (
     <Pressable style={styles.card} onPress={onPress}>
       <View style={styles.imageWrap}>
-        <PhotoPlaceholder icon="restaurant-outline" style={styles.image} />
+        <PhotoPlaceholder source={table.image} icon="restaurant-outline" style={styles.image} />
         <View style={styles.mealBadge}>
           <Text style={[typography.caption, styles.mealBadgeText]}>{table.mealType}</Text>
         </View>
         <View style={styles.avatar}>
-          <PhotoPlaceholder icon="person-outline" style={styles.avatarImage} />
+          <PhotoPlaceholder source={table.hostAvatar} icon="person-outline" style={styles.avatarImage} />
         </View>
       </View>
 

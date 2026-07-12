@@ -11,6 +11,7 @@ export function IntroSlide1Screen({ navigation }: Props) {
     <IntroSlideTemplate
       step={0}
       icon="restaurant-outline"
+      image={require("../../../assets/images/intro-1-discover.png")}
       title="Discover Local Tables"
       description="Find local hosts ready to share an authentic meal with you. No restaurants, just real hospitality."
       ctaLabel="Next"

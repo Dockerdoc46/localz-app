@@ -11,6 +11,7 @@ export function IntroSlide2Screen({ navigation }: Props) {
     <IntroSlideTemplate
       step={1}
       icon="calendar-outline"
+      image={require("../../../assets/images/intro-2-book.png")}
       title="Book Your Seat"
       description="Choose the experience you prefer and book in a few taps. Simple, safe, and transparent."
       ctaLabel="Next"

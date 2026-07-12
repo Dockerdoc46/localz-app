@@ -8,8 +8,7 @@ import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { colors, spacing, typography } from "@/theme";
 
 // Figma node 3:12 — "splash-welcome"
-// Uncomment once exported from Figma (see README):
-// const heroImage = require("../../../assets/images/hero-splash.jpg");
+const heroImage = require("../../../assets/images/hero-splash.png");
 
 type Props = NativeStackScreenProps<OnboardingStackParamList, "SplashWelcome">;
 
@@ -24,7 +23,7 @@ export function SplashWelcomeScreen({ navigation }: Props) {
       </View>
 
       <View style={styles.heroWrap}>
-        <PhotoPlaceholder icon="restaurant-outline" style={styles.hero} />
+        <PhotoPlaceholder source={heroImage} icon="restaurant-outline" style={styles.hero} />
       </View>
 
       <View style={styles.footer}>

@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { ChatStackParamList } from "@/navigation/types";
 import { ScreenContainer } from "@/components/ScreenContainer";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { CONVERSATIONS } from "@/data/conversations";
 import { colors, radius, spacing, typography } from "@/theme";
 
@@ -46,7 +47,7 @@ export function ChatListScreen() {
               navigation.navigate("ChatThread", { threadId: item.id, hostName: item.hostName })
             }
           >
-            <View style={styles.avatar} />
+            <PhotoPlaceholder source={item.hostAvatar} icon="person-outline" style={styles.avatar} />
             <View style={styles.rowInfo}>
               <View style={styles.rowTop}>
                 <Text style={typography.bodyStrong}>{item.hostName}</Text>

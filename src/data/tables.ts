@@ -1,5 +1,8 @@
+import type { ImageSourcePropType } from "react-native";
+
 // Mock data matching the sample tables shown in the Figma "home-discovery-feed" / "map-view" screens.
 // Replace with real API data once the backend exists.
+// Photos exported from the Figma file's discovery feed frame (node 3:205).
 
 export type Table = {
   id: string;
@@ -18,6 +21,8 @@ export type Table = {
   address: string;
   tags: string[];
   mapPosition: { top: number; left: number };
+  image: ImageSourcePropType;
+  hostAvatar: ImageSourcePropType;
 };
 
 export const TABLES: Table[] = [
@@ -40,6 +45,8 @@ export const TABLES: Table[] = [
     address: "Via della Lungaretta 12, Rome",
     tags: ["Vegetarian", "Gluten Free"],
     mapPosition: { top: 300, left: 120 },
+    image: require("../../assets/images/dish-pasta.png"),
+    hostAvatar: require("../../assets/images/host-sofia.png"),
   },
   {
     id: "lukas-brunch",
@@ -59,6 +66,8 @@ export const TABLES: Table[] = [
     address: "Via dei Coronari 4, Rome",
     tags: ["Vegetarian", "Gluten Free"],
     mapPosition: { top: 450, left: 240 },
+    image: require("../../assets/images/dish-brunch.png"),
+    hostAvatar: require("../../assets/images/host-lukas.png"),
   },
   {
     id: "clara-lunch",
@@ -77,6 +86,8 @@ export const TABLES: Table[] = [
     address: "Piazza Trilussa 8, Rome",
     tags: ["Vegetarian", "Gluten Free"],
     mapPosition: { top: 520, left: 150 },
+    image: require("../../assets/images/dish-lunch.png"),
+    hostAvatar: require("../../assets/images/host-clara.png"),
   },
 ];
 

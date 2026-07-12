@@ -5,6 +5,8 @@ import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { ProfileStackParamList } from "@/navigation/types";
 import { ScreenContainer } from "@/components/ScreenContainer";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { TABLES } from "@/data/tables";
 import { colors, radius, spacing, typography } from "@/theme";
 
 // Figma node 4:12 — "host-dashboard" (Explore tab content while in host mode)
@@ -50,7 +52,7 @@ export function HostDashboardScreen() {
         <View style={styles.section}>
           <Text style={typography.h2}>Upcoming Tables</Text>
           <View style={styles.tableCard}>
-            <View style={styles.tableThumb} />
+            <PhotoPlaceholder source={TABLES[0].image} icon="restaurant-outline" style={styles.tableThumb} />
             <View style={styles.tableInfo}>
               <Text style={typography.bodyStrong}>Authentic Roman Dinner</Text>
               <Text style={typography.label}>Today, 8:30 PM • 3 guests</Text>

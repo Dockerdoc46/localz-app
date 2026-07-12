@@ -11,7 +11,14 @@ import { colors, radius, spacing, typography } from "@/theme";
 // Figma node 3:160 — "city-language-selection"
 type Props = NativeStackScreenProps<OnboardingStackParamList, "CityLanguageSelection">;
 
-const CITIES = ["Rome", "Milano", "Barcelona", "Berlin", "Lisbon", "Amsterdam"];
+const CITIES = [
+  { name: "Rome", image: require("../../../assets/images/city-rome.png") },
+  { name: "Milano", image: require("../../../assets/images/city-milano.png") },
+  { name: "Barcelona", image: require("../../../assets/images/city-barcelona.png") },
+  { name: "Berlin", image: require("../../../assets/images/city-berlin.png") },
+  { name: "Lisbon", image: require("../../../assets/images/city-lisbon.png") },
+  { name: "Amsterdam", image: require("../../../assets/images/city-amsterdam.png") },
+];
 
 export function CityLanguageSelectionScreen({ navigation }: Props) {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
@@ -33,20 +40,21 @@ export function CityLanguageSelectionScreen({ navigation }: Props) {
           <Text style={[typography.buttonLabel, styles.sectionTitle]}>Popular Cities</Text>
           <FlatList
             data={CITIES}
-            keyExtractor={(item) => item}
+            keyExtractor={(item) => item.name}
             numColumns={3}
             columnWrapperStyle={styles.cityRow}
             scrollEnabled={false}
             renderItem={({ item }) => (
-              <Pressable style={styles.cityItem} onPress={() => setSelectedCity(item)}>
+              <Pressable style={styles.cityItem} onPress={() => setSelectedCity(item.name)}>
                 <PhotoPlaceholder
+                  source={item.image}
                   icon="location-outline"
                   style={[
                     styles.cityImage,
-                    selectedCity === item ? styles.cityImageSelected : null,
+                    selectedCity === item.name ? styles.cityImageSelected : null,
                   ]}
                 />
-                <Text style={typography.bodyStrong}>{item}</Text>
+                <Text style={typography.bodyStrong}>{item.name}</Text>
               </Pressable>
             )}
           />

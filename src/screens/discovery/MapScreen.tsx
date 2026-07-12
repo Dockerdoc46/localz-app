@@ -49,7 +49,7 @@ export function MapScreen() {
               <View style={styles.handle} />
             </View>
             <View style={styles.sheetRow}>
-              <PhotoPlaceholder icon="restaurant-outline" style={styles.sheetImage} />
+              <PhotoPlaceholder source={selected.image} icon="restaurant-outline" style={styles.sheetImage} />
               <View style={styles.sheetInfo}>
                 <View style={styles.sheetTitleRow}>
                   <Text style={typography.h2} numberOfLines={1}>

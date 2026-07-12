@@ -9,6 +9,7 @@ import { ProfileModeToggle } from "@/components/ProfileModeToggle";
 import { ProfileQuickLinks } from "@/components/ProfileQuickLinks";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { useHostMode } from "@/context/HostModeContext";
+import { TABLES } from "@/data/tables";
 import { colors, radius, spacing, typography } from "@/theme";
 
 // Figma node 4:549 — "host-guest-toggle" (Host/Localz mode profile)
@@ -42,9 +43,9 @@ export function HostProfileScreen() {
         <View style={styles.section}>
           <Text style={typography.h2}>My Tables</Text>
           <View style={styles.tablesRow}>
-            {MY_TABLES.map((table) => (
+            {MY_TABLES.map((table, i) => (
               <View key={table.title} style={styles.tableCard}>
-                <PhotoPlaceholder icon="restaurant-outline" style={styles.tableImage} />
+                <PhotoPlaceholder source={TABLES[i % TABLES.length].image} icon="restaurant-outline" style={styles.tableImage} />
                 <Text style={typography.bodyStrong} numberOfLines={1}>
                   {table.title}
                 </Text>

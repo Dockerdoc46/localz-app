@@ -11,6 +11,7 @@ export function IntroSlide3Screen({ navigation }: Props) {
     <IntroSlideTemplate
       step={2}
       icon="people-outline"
+      image={require("../../../assets/images/intro-3-meet.png")}
       title="Meet New People"
       description="Sit at the table with students, travelers, and locals. Share stories and unique flavors."
       ctaLabel="Start"
