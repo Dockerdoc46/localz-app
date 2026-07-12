@@ -17,22 +17,19 @@ export type ChatStackParamList = {
   ChatThread: { threadId: string; hostName: string };
 };
 
-// ---- Host stack — matches Figma section "User as a host" (wired in a later iteration) ----
-export type HostStackParamList = {
-  HostDashboard: undefined;
-  CreateTableStep1: undefined;
-  CreateTableStep2: undefined;
-  HostRewards: undefined;
-  HostGuestToggle: undefined;
-};
-
-// ---- Profile / Settings stack — matches Figma section "General & Settings" ----
+// ---- Profile stack — matches Figma section "General & Settings" plus
+// "User as a host" (create-table, host-rewards). ProfileHome renders either
+// the guest profile (59:2) or the host profile (4:549) depending on the
+// global host-mode toggle (see HostModeContext). ----
 export type ProfileStackParamList = {
-  UserProfile: undefined;
+  ProfileHome: undefined;
   WalletRewards: undefined;
   NotificationsList: undefined;
   SettingsMain: undefined;
   HelpSafety: undefined;
+  CreateTableStep1: undefined;
+  CreateTableStep2: { mealType: string; seats: number };
+  HostRewards: undefined;
 };
 
 // ---- Bottom tabs — matches the 5-tab bottom-nav shown across Figma discovery/map/booking screens ----
@@ -60,4 +57,8 @@ export type RootStackParamList = {
 };
 
 declare global {
-  // eslint-disable-next-line @typescript-esl
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}

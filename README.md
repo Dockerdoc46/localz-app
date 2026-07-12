@@ -12,7 +12,7 @@ App di social dining costruita in **React Native + Expo + TypeScript**, basata s
 - Font Urbanist (Google Fonts) — matcha il font usato in Figma
 - Design tokens estratti dalle variabili Figma (`src/theme`)
 
-## Come avviare il progetto
+## Come avviare il progetto (Expo Go)
 
 ```bash
 npm install
@@ -20,71 +20,75 @@ npx expo start
 ```
 
 Poi scansiona il QR code con l'app **Expo Go** (iOS/Android) oppure premi `i` per il simulatore iOS
-/ `a` per l'emulatore Android.
+/ `a` per l'emulatore Android. Questo passaggio va eseguito sul tuo computer (il sandbox di
+sviluppo non può avviare un Metro bundler raggiungibile dal telefono).
 
 ## Struttura
 
 ```
 src/
   theme/        colori, tipografia, spacing, radius (tokens da Figma)
-  components/   Button, ScreenContainer, PhotoPlaceholder, Chip, TableCard, ecc.
-  data/         mock data (tavole di esempio)
+  components/   Button, ScreenContainer, PhotoPlaceholder, Chip, TableCard, ProfileModeToggle,
+                ProfileQuickLinks, ecc.
+  context/      HostModeContext — switch globale Guest/Localz (host)
+  data/         mock data (tavole, conversazioni)
   navigation/   Onboarding stack + 5 tab principali (Explore, Map, Bookings, Messages, Profile)
   screens/
     onboarding/ 6 schermate COMPLETE e fedeli al design (splash, 3 intro, login, verifica identità, città)
     discovery/  feed, filtri, mappa, dettaglio tavola — COMPLETE e fedeli al design
-    booking/    scelta posti, riepilogo costi, conferma — COMPLETE e fedeli al design
-    chat/       messaggi — placeholder, da implementare
-    host/       dashboard host, crea tavola — placeholder, da implementare
-    settings/   profilo, wallet, notifiche, impostazioni — placeholder, da implementare
+    booking/    scelta posti, riepilogo costi, conferma, recensione post-cena — COMPLETE
+    chat/       lista messaggi + thread — COMPLETE e fedeli al design
+    host/       dashboard host, crea tavola (2 step), rewards, profilo host — COMPLETE
+    settings/   profilo guest, wallet, notifiche, impostazioni, help — COMPLETE
 ```
-
-Le schermate "placeholder" sono navigabili (fanno già parte del flusso completo dell'app) ma non
-sono ancora fedeli al design Figma — verranno implementate una sezione alla volta.
 
 ## Stato di avanzamento
 
 - [x] Design tokens (colori, font, radius) da Figma
-- [x] Scaffold progetto + navigazione completa (27 schermate mappate)
+- [x] Scaffold progetto + navigazione completa (30 schermate mappate)
 - [x] Flow Onboarding/Login (6 schermate, pixel-fedeli)
 - [x] Flow Discovery/Map/Booking (8 schermate, pixel-fedeli): feed con filtri, mappa con
       bottom sheet, dettaglio tavola, scelta posti, riepilogo costi, conferma
-- [ ] Flow Chat + Host (7 schermate)
-- [ ] Flow Wallet/Settings/Profile (6 schermate)
+- [x] Flow Chat + Host (7 schermate): lista chat, thread, dashboard host, crea tavola (2 step),
+      rewards host, profilo host
+- [x] Flow Wallet/Settings/Profile (7 schermate): profilo guest/host con switch Guest↔Localz,
+      wallet, notifiche, impostazioni, help & safety, recensione post-cena
+
+Tutte le schermate principali del file Figma sono ora implementate e navigabili. La schermata
+"Bookings" (tab calendario) resta un placeholder minimale — nel file Figma esportato non era
+presente una vista dedicata alle prenotazioni.
 
 ### Nota sulla navigazione
 
 Il bottom-nav a 5 tab (Explore, Map, Bookings, Messages, Profile) segue esattamente quello
-mostrato nelle schermate Figma di discovery/mappa. Il flusso "Host" (dashboard, crea tavola,
-ricompense) non è un tab ma verrà agganciato come flusso separato raggiungibile dal profilo
-("Switch to Hosting"), coerente con come Figma lo presenta come sezione a parte ("User as a
-host").
+mostrato nelle schermate Figma di discovery/mappa. Il flusso "Host" non è un tab a sé: lo switch
+"Guest / Localz" nel tab Profile (componente `ProfileModeToggle`, stato globale in
+`HostModeContext`) cambia cosa mostrano sia il tab Explore (feed scoperta ↔ dashboard host) sia
+il tab Profile (profilo guest ↔ profilo host), coerentemente con come Figma presenta "User as a
+host" come una modalità dello stesso account, non una sezione separata.
 
-Dati delle tavole (Sofia, Lukas, Clara) sono mock in `src/data/tables.ts` — da sostituire con
-chiamate API reali quando ci sarà un backend.
+Dati mock in `src/data/tables.ts` (tavole) e `src/data/conversations.ts` (chat) — da sostituire
+con chiamate API reali quando ci sarà un backend.
 
 ## Esportare le immagini da Figma
 
 Il sandbox di sviluppo non ha accesso di rete ai server di Figma, quindi le foto reali (hero,
-città, ecc.) non sono state scaricate automaticamente: le schermate mostrano placeholder colorati.
+città, piatti, ecc.) non sono state scaricate automaticamente: le schermate mostrano placeholder
+colorati con icona (componente `PhotoPlaceholder`).
 
 Per aggiungere le foto vere:
 
 1. In Figma desktop, seleziona il frame/immagine (es. la foto della cena nella schermata splash).
 2. Tasto destro → **Export...** → PNG/JPG, scala 2x.
-3. Salva il file in `assets/images/` con questi nomi (già referenziati nel codice, basta
-   decommentare le righe `require(...)` nei rispettivi screen):
-   - `hero-splash.jpg` — splash-welcome
-   - `intro-1-discover.jpg`, `intro-2-book.jpg`, `intro-3-meet.jpg` — le 3 intro slide
-   - `city-rome.jpg`, `city-milano.jpg`, `city-barcelona.jpg`, `city-berlin.jpg`,
-     `city-lisbon.jpg`, `city-amsterdam.jpg` — griglia città
+3. Salva il file in `assets/images/` con un nome descrittivo.
 4. In ogni screen file, sostituisci `<PhotoPlaceholder icon="..." />` con
    `<PhotoPlaceholder source={require("../../../assets/images/NOME.jpg")} />`.
 
 ## Prossimi passi
 
-- Implementare le restanti 13 schermate (Chat, Host, Wallet, Settings) seguendo lo stesso
-  pattern usato per onboarding/discovery/booking.
+- Testare la beta su **Expo Go** (`npm install` + `npx expo start` sul tuo Mac/PC, poi scansiona
+  il QR con l'app Expo Go sul telefono).
+- Esportare e collegare le immagini reali da Figma (vedi sezione sopra).
 - Collegare un backend (auth, prenotazioni, chat, pagamenti in-app come da modello di
   cost-sharing descritto nel progetto).
 - Configurare EAS Build per la pubblicazione su App Store.

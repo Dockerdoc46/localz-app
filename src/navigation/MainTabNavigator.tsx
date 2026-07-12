@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import type { MainTabParamList } from "./types";
-import { HomeDiscoveryFeedScreen } from "@/screens/discovery/HomeDiscoveryFeedScreen";
+import { ExploreTabScreen } from "@/screens/discovery/ExploreTabScreen";
 import { MapScreen } from "@/screens/discovery/MapScreen";
 import { MyBookingsScreen } from "@/screens/booking/MyBookingsScreen";
 import { ChatStackNavigator } from "./ChatStackNavigator";
@@ -42,4 +42,11 @@ export function MainTabNavigator() {
         ),
       })}
     >
-      <Tab.Screen name="ExploreTab" component={HomeDisc
+      <Tab.Screen name="ExploreTab" component={ExploreTabScreen} />
+      <Tab.Screen name="MapTab" component={MapScreen} />
+      <Tab.Screen name="BookingsTab" component={MyBookingsScreen} />
+      <Tab.Screen name="MessagesTab" component={ChatStackNavigator} />
+      <Tab.Screen name="ProfileTab" component={ProfileStackNavigator} />
+    </Tab.Navigator>
+  );
+}

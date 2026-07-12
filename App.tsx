@@ -12,6 +12,7 @@ import {
   Urbanist_900Black,
 } from "@expo-google-fonts/urbanist";
 import { RootNavigator } from "@/navigation/RootNavigator";
+import { HostModeProvider } from "@/context/HostModeContext";
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -38,7 +39,9 @@ export default function App() {
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <StatusBar style="dark" />
-      <RootNavigator />
+      <HostModeProvider>
+        <RootNavigator />
+      </HostModeProvider>
     </View>
   );
 }
